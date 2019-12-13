@@ -3,6 +3,7 @@
 
 import os, re
 import random,readJSON
+import assist,assistTest
 
 data = readJSON.读JSON文件("data.json")
 名人名言 = data["famous"] # a 代表前面垫话，b代表后面垫话
@@ -39,7 +40,18 @@ def 另起一段():
     return xx
 
 if __name__ == "__main__":
+    title = ''
     xx = input("请输入文章主题:")
+    chiose = input('选择标题：1.对主题之论述 2.论主题 3.主题申请')
+    
+    while assistTest.isNumber(chiose) != True or int(chiose) > 3:
+        chiose = input('选择的标题不在支持列表内 ！>.< ，请重新选择: ')
+
+    title = assist.makeTitle(chiose, xx)
+
+    with open('test.md', 'w', encoding='utf-8') as file:
+        file.write(title)
+
     for x in xx:
         tmp = str()
         while ( len(tmp) < 6000 ) :
@@ -51,4 +63,4 @@ if __name__ == "__main__":
             else:
                 tmp += next(下一句废话)
         tmp = tmp.replace("x",xx)
-        print(tmp)
+        assist.writeContent(tmp)
