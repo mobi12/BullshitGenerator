@@ -42,14 +42,14 @@ def 另起一段():
 if __name__ == "__main__":
     title = ''
     xx = input("请输入文章主题:")
-    chiose = input('选择标题：1.对主题之论述 2.论主题 3.主题申请')
+    chiose = input('选择标题：1.对主题之论述 2.论主题 3.主题申请') #请求用户输入标题
     
-    while assistTest.isNumber(chiose) != True or int(chiose) > 3:
+    while assistTest.isNumber(chiose) != True or int(chiose) > 3: #判断用户输入是否正确
         chiose = input('选择的标题不在支持列表内 ！>.< ，请重新选择: ')
 
-    title = assist.makeTitle(chiose, xx)
+    title = assist.makeTitle(chiose, xx) #填入文章标题
 
-    with open('test.md', 'w', encoding='utf-8') as file:
+    with open('test.md', 'w', encoding='utf-8') as file: #以utf8编码创建文件输入标题
         file.write(title)
 
     for x in xx:
